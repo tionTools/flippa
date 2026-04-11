@@ -22,7 +22,7 @@ watch(
   <div class="min-h-screen flex flex-col">
     <Header />
 
-    <div class="flex flex-1 pt-16">
+    <div class="flex flex-1 pt-24">
       <aside class="w-56 shrink-0 border-r border-gray-100 px-3 py-6">
         <nav class="flex flex-col gap-1">
           <RouterLink

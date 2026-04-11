@@ -26,6 +26,9 @@ importers:
       '@clerk/vue':
         specifier: ^2.0.11
         version: 2.0.11(vue@3.6.0-beta.9(typescript@5.9.3))
+      '@lucide/vue':
+        specifier: ^1.8.0
+        version: 1.8.0(vue@3.6.0-beta.9(typescript@5.9.3))
       '@supabase/supabase-js':
         specifier: ^2.103.0
         version: 2.103.0
@@ -38,6 +41,9 @@ importers:
       vue-router:
         specifier: ^5.0.3
         version: 5.0.4(pinia@3.0.4(typescript@5.9.3)(vue@3.6.0-beta.9(typescript@5.9.3)))(vue@3.6.0-beta.9(typescript@5.9.3))
+      vue3-marquee:
+        specifier: ^4.2.2
+        version: 4.2.2(vue@3.6.0-beta.9(typescript@5.9.3))
     devDependencies:
       '@tailwindcss/vite':
         specifier: ^4.2.2
@@ -330,6 +336,11 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@lucide/vue@1.8.0':
+    resolution: {integrity: sha512-Rgy2rxfOx9yP6fWneE3QO6xwUbF2o7f9+MRbzGLRakee4tzUeVWHdX23uRH4ymwEzoq2+8vqRI9yGsxeZhYlWw==}
+    peerDependencies:
+      vue: '>=3.0.1'
 
   '@napi-rs/wasm-runtime@1.1.2':
     resolution: {integrity: sha512-sNXv5oLJ7ob93xkZ1XnxisYhGYXfaG9f65/ZgYuAu3qt7b3NadcOEhLvx28hv31PgX8SZJRYrAIPQilQmFpLVw==}
@@ -1923,6 +1934,12 @@ packages:
     peerDependencies:
       typescript: '>=5.0.0'
 
+  vue3-marquee@4.2.2:
+    resolution: {integrity: sha512-FeFvGUVInKfFilXFcnl8sDRBJBZCZSNLlQDquJErB9db6W2xICRVqbRV/jtdzsEP0rftarLQhx9MeEAU0+TPuQ==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      vue: ^3.2
+
   vue@3.6.0-beta.9:
     resolution: {integrity: sha512-K/+HT52OAZvaNDDMvT+Lfk36e/97PsyJyDWXM0FDfLQKGbEDXsd4pSQz+BJViGssLcltQLSTlSqQlZ6fkGo5CA==}
     peerDependencies:
@@ -2264,6 +2281,10 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@lucide/vue@1.8.0(vue@3.6.0-beta.9(typescript@5.9.3))':
+    dependencies:
+      vue: 3.6.0-beta.9(typescript@5.9.3)
 
   '@napi-rs/wasm-runtime@1.1.2(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)':
     dependencies:
@@ -3749,6 +3770,10 @@ snapshots:
       '@volar/typescript': 2.4.28
       '@vue/language-core': 3.2.6
       typescript: 5.9.3
+
+  vue3-marquee@4.2.2(vue@3.6.0-beta.9(typescript@5.9.3)):
+    dependencies:
+      vue: 3.6.0-beta.9(typescript@5.9.3)
 
   vue@3.6.0-beta.9(typescript@5.9.3):
     dependencies:
