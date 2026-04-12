@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://flippa.example.com/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://flippa.example.com/projects</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!--
+    Individual project pages (/projects/:id) are dynamically generated from Supabase.
+    To include them here, generate this file server-side or via a build-time script
+    that queries the projects table and outputs <url> entries for each UUID.
+  -->
+
+</urlset>
