@@ -17,6 +17,7 @@ export interface Project {
   metrics: ProjectMetrics
   createdAt: string
   slug?: string
+  image_url?: string
 }
 
 export const projects: Project[] = [

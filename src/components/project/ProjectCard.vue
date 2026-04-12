@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Project } from '@/shared/mocks/projects'
 import { getCategoryLabel } from '@/shared/mocks/categories'
+import ProjectImage from '@/components/shared/ProjectImage.vue'
 
 defineProps<{
   project: Project
@@ -21,11 +22,9 @@ function formatRevenue(value: number): string {
     :to="`/projects/${project.id}`"
     class="flex flex-col border border-gray-200 rounded-xl overflow-hidden hover:border-gray-400 transition-colors"
   >
-    <!-- Placeholder visual -->
-    <div class="h-36 bg-gray-50 flex items-center justify-center">
-      <span class="text-3xl font-bold text-gray-200">
-        {{ project.title.charAt(0) }}
-      </span>
+    <!-- Project image -->
+    <div class="aspect-video w-full">
+      <ProjectImage :src="(project as any).image_url" :alt="project.title" />
     </div>
 
     <div class="flex flex-col gap-3 p-4">

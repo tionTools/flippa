@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import type { Project } from '@/shared/mocks/projects'
-import type { ProjectDetail } from '@/shared/mocks/projectDetails'
+import type { ProjectRecord } from '@/types/project'
 
 defineProps<{
-  project: Project
-  detail: ProjectDetail
+  project: ProjectRecord
 }>()
 
 function formatRevenue(value: number): string {
@@ -24,65 +22,57 @@ function formatTraffic(value: number): string {
   <div class="flex flex-col gap-4">
     <h2 class="text-lg font-semibold text-gray-900">Business overview</h2>
     <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-      <!-- Monthly Revenue -->
-      <div
-        v-if="project.metrics.monthlyRevenue"
-        class="flex flex-col gap-1 p-4 rounded-xl border border-gray-100 bg-gray-50"
-      >
+
+      <div v-if="project.monthly_revenue"
+        class="flex flex-col gap-1 p-4 rounded-xl border border-gray-100 bg-gray-50">
         <span class="text-xs text-gray-400 font-medium uppercase tracking-wide">Revenue / mo</span>
-        <span class="text-xl font-bold text-gray-900">
-          {{ formatRevenue(project.metrics.monthlyRevenue) }}
-        </span>
+        <span class="text-xl font-bold text-gray-900">{{ formatRevenue(project.monthly_revenue) }}</span>
       </div>
 
-      <!-- Monthly Profit -->
-      <div
-        v-if="project.metrics.monthlyProfit"
-        class="flex flex-col gap-1 p-4 rounded-xl border border-gray-100 bg-gray-50"
-      >
+      <div v-if="project.monthly_profit"
+        class="flex flex-col gap-1 p-4 rounded-xl border border-gray-100 bg-gray-50">
         <span class="text-xs text-gray-400 font-medium uppercase tracking-wide">Profit / mo</span>
-        <span class="text-xl font-bold text-emerald-600">
-          {{ formatRevenue(project.metrics.monthlyProfit) }}
-        </span>
+        <span class="text-xl font-bold text-emerald-600">{{ formatRevenue(project.monthly_profit) }}</span>
       </div>
 
-      <!-- Monthly Traffic -->
-      <div
-        v-if="project.metrics.monthlyTraffic"
-        class="flex flex-col gap-1 p-4 rounded-xl border border-gray-100 bg-gray-50"
-      >
+      <div v-if="project.monthly_traffic"
+        class="flex flex-col gap-1 p-4 rounded-xl border border-gray-100 bg-gray-50">
         <span class="text-xs text-gray-400 font-medium uppercase tracking-wide">Traffic / mo</span>
-        <span class="text-xl font-bold text-gray-900">
-          {{ formatTraffic(project.metrics.monthlyTraffic) }}
-        </span>
+        <span class="text-xl font-bold text-gray-900">{{ formatTraffic(project.monthly_traffic) }}</span>
       </div>
 
-      <!-- Profit Margin -->
-      <div
-        v-if="project.metrics.monthlyRevenue && project.metrics.monthlyProfit"
-        class="flex flex-col gap-1 p-4 rounded-xl border border-gray-100 bg-gray-50"
-      >
+      <div v-if="project.monthly_revenue && project.monthly_profit"
+        class="flex flex-col gap-1 p-4 rounded-xl border border-gray-100 bg-gray-50">
         <span class="text-xs text-gray-400 font-medium uppercase tracking-wide">Margin</span>
         <span class="text-xl font-bold text-gray-900">
-          {{
-            Math.round((project.metrics.monthlyProfit / project.metrics.monthlyRevenue) * 100)
-          }}%
+          {{ Math.round((project.monthly_profit / project.monthly_revenue) * 100) }}%
         </span>
       </div>
 
-      <!-- Team Size -->
-      <div class="flex flex-col gap-1 p-4 rounded-xl border border-gray-100 bg-gray-50">
+      <div v-if="project.team_size != null"
+        class="flex flex-col gap-1 p-4 rounded-xl border border-gray-100 bg-gray-50">
         <span class="text-xs text-gray-400 font-medium uppercase tracking-wide">Team size</span>
-        <span class="text-xl font-bold text-gray-900">
-          {{ detail.teamSize }} FTE
-        </span>
+        <span class="text-xl font-bold text-gray-900">{{ project.team_size }} FTE</span>
       </div>
 
-      <!-- Founded Year -->
-      <div class="flex flex-col gap-1 p-4 rounded-xl border border-gray-100 bg-gray-50">
+      <div v-if="project.founded_year"
+        class="flex flex-col gap-1 p-4 rounded-xl border border-gray-100 bg-gray-50">
         <span class="text-xs text-gray-400 font-medium uppercase tracking-wide">Founded</span>
-        <span class="text-xl font-bold text-gray-900">{{ detail.foundedYear }}</span>
+        <span class="text-xl font-bold text-gray-900">{{ project.founded_year }}</span>
       </div>
+
+      <div v-if="project.total_users"
+        class="flex flex-col gap-1 p-4 rounded-xl border border-gray-100 bg-gray-50">
+        <span class="text-xs text-gray-400 font-medium uppercase tracking-wide">Total users</span>
+        <span class="text-xl font-bold text-gray-900">{{ formatTraffic(project.total_users) }}</span>
+      </div>
+
+      <div v-if="project.growth_rate != null"
+        class="flex flex-col gap-1 p-4 rounded-xl border border-gray-100 bg-gray-50">
+        <span class="text-xs text-gray-400 font-medium uppercase tracking-wide">Growth MoM</span>
+        <span class="text-xl font-bold text-gray-900">{{ project.growth_rate }}%</span>
+      </div>
+
     </div>
   </div>
 </template>

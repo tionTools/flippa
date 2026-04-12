@@ -14,11 +14,11 @@ interface TickerItem {
 }
 
 const tickerItems: TickerItem[] = [
-  { id: '1', name: 'CloudSync AI', price: '$420,000', change: '+12.4%', trend: 'up' },
-  { id: '2', name: 'StorePilot', price: '$1,200,000', change: '+8.1%', trend: 'up' },
-  { id: '5', name: 'AdFlow Pro', price: '$780,000', change: '+15.7%', trend: 'up' },
-  { id: '3', name: 'NestMetrics', price: '$340,000', change: '+6.3%', trend: 'up' },
-  { id: '4', name: 'SendLoop', price: '$2,100,000', change: '+9.2%', trend: 'up' },
+  { id: '584476ff-17d8-4847-ae7a-f57200236514', name: 'CloudSync AI', price: '$420,000', change: '+12.4%', trend: 'up' },
+  { id: '1e75bea8-7266-437b-81ca-7a004e0a187b', name: 'StorePilot', price: '$1,200,000', change: '+8.1%', trend: 'up' },
+  { id: '19201259-b9c2-4f97-b227-adb338a6a091', name: 'AdFlow Pro', price: '$780,000', change: '+15.7%', trend: 'up' },
+  { id: '1f0b8141-ef24-4a56-bd8b-754ee2f23c1e', name: 'NestMetrics', price: '$340,000', change: '+6.3%', trend: 'up' },
+  { id: 'ef4d0fdc-4f8c-47a7-8973-beddd53acd03', name: 'SendLoop', price: '$2,100,000', change: '+9.2%', trend: 'up' },
 ]
 </script>
 
@@ -26,12 +26,8 @@ const tickerItems: TickerItem[] = [
   <!-- Ticker: normal document flow, scrolls with page -->
   <div class="h-8 bg-white border-b border-gray-100 flex items-center overflow-hidden text-xs text-gray-500">
     <Vue3Marquee :duration="40" :pause-on-hover="true" :clone="true">
-      <RouterLink
-        v-for="item in tickerItems"
-        :key="item.id"
-        :to="`/projects/${item.id}`"
-        class="flex items-center gap-1.5 px-6 hover:text-gray-700 transition-colors"
-      >
+      <RouterLink v-for="item in tickerItems" :key="item.id" :to="`/projects/${item.id}`"
+        class="flex items-center gap-1.5 px-6 hover:text-gray-700 transition-colors">
         <span class="font-medium text-gray-700">{{ item.name }}</span>
         <span>{{ item.price }}</span>
         <span class="text-green-600">{{ item.change }}</span>
@@ -82,10 +78,8 @@ const tickerItems: TickerItem[] = [
           </SignUpButton>
         </Show>
         <Show when="signed-in">
-          <RouterLink
-            to="/dashboard"
-            class="flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-sm text-gray-700 hover:bg-gray-100 transition-colors"
-          >
+          <RouterLink to="/dashboard"
+            class="flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-sm text-gray-700 hover:bg-gray-100 transition-colors">
             <LayoutDashboard :size="14" />
             Dashboard
           </RouterLink>

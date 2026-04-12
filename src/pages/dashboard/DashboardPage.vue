@@ -1,11 +1,10 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import { useUser } from '@clerk/vue'
 import { Plus } from '@lucide/vue'
-import {
-  dashboardKpis,
-  dashboardProjects,
-  recentActivity,
-} from '@/shared/mocks/dashboardData'
+import { dashboardKpis, recentActivity } from '@/shared/mocks/dashboardData'
+import type { ProjectRecord } from '@/types/project'
+import { getProjectsPage } from '@/api/projects'
 import DashboardKpiGrid from '@/components/dashboard/DashboardKpiGrid.vue'
 import DashboardChartsSection from '@/components/dashboard/DashboardChartsSection.vue'
 import DashboardActivityFeed from '@/components/dashboard/DashboardActivityFeed.vue'
@@ -19,6 +18,17 @@ const greeting = (() => {
   if (h < 18) return 'Good afternoon'
   return 'Good evening'
 })()
+
+const previewProjects = ref<ProjectRecord[]>([])
+
+onMounted(async () => {
+  try {
+    const result = await getProjectsPage({ page: 1, pageSize: 3 })
+    previewProjects.value = result.data
+  } catch {
+    // preview table is non-critical — silently skip on error
+  }
+})
 </script>
 
 <template>
@@ -51,7 +61,7 @@ const greeting = (() => {
       </div>
     </div>
 
-    <!-- Projects preview -->
-    <DashboardProjectsTable :projects="dashboardProjects" :limit="3" />
+    <!-- Projects preview (real data, first 3) -->
+    <DashboardProjectsTable :projects="previewProjects" :limit="3" />
   </div>
 </template>

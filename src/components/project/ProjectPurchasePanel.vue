@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import type { Project } from '@/shared/mocks/projects'
+import type { ProjectRecord } from '@/types/project'
 import { useAuth, SignInButton } from '@clerk/vue'
 import { HandCoins, Gavel, Heart, ShieldCheck, LogIn } from '@lucide/vue'
 
 defineProps<{
-  project: Project
+  project: ProjectRecord
 }>()
 
 const { isSignedIn } = useAuth()
 
-function formatPrice(value: number): string {
+function formatPrice(value: number | null): string {
+  if (value == null) return 'Price on request'
   return '$' + value.toLocaleString('en-US')
 }
 </script>
@@ -20,10 +21,10 @@ function formatPrice(value: number): string {
     <div class="flex flex-col gap-1">
       <span class="text-xs text-gray-400 font-medium uppercase tracking-wide">Asking price</span>
       <span class="text-3xl font-extrabold text-gray-900">
-        {{ formatPrice(project.askingPrice) }}
+        {{ formatPrice(project.asking_price) }}
       </span>
-      <span class="text-xs text-gray-400">
-        {{ Math.round(project.askingPrice / (project.metrics.monthlyRevenue ?? 1)) }}x monthly revenue
+      <span v-if="project.asking_price && project.monthly_revenue" class="text-xs text-gray-400">
+        {{ Math.round(project.asking_price / project.monthly_revenue) }}x monthly revenue
       </span>
     </div>
 

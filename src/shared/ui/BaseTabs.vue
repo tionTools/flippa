@@ -10,19 +10,12 @@ defineEmits<{
 </script>
 
 <template>
-  <div class="flex items-center gap-1 overflow-x-auto pb-1">
-    <button
-      v-for="tab in tabs"
-      :key="tab.id"
-      type="button"
-      class="shrink-0 px-3 py-1.5 rounded-lg text-sm transition-colors whitespace-nowrap"
-      :class="
-        tab.id === modelValue
-          ? 'bg-gray-900 text-white font-medium'
-          : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
-      "
-      @click="$emit('update:modelValue', tab.id)"
-    >
+  <div class="flex items-center gap-1 pb-1 flex-wrap">
+    <button v-for="tab in tabs" :key="tab.id" type="button"
+      class="shrink-0 px-3 py-1.5 rounded-lg text-sm transition-colors whitespace-nowrap border " :class="tab.id === modelValue
+        ? 'bg-gray-900 text-white font-medium border-transparent'
+        : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100 border-gray-200'
+        " @click="$emit('update:modelValue', tab.id)">
       {{ tab.label }}
     </button>
   </div>
