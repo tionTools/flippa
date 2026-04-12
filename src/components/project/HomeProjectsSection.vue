@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch, onMounted } from 'vue'
-import { ArrowRight, Loader, AlertCircle } from '@lucide/vue'
+import { ArrowRight, AlertCircle } from '@lucide/vue'
 import { BaseTabs } from '@/shared/ui'
 import ProjectCard from './ProjectCard.vue'
 import { categories } from '@/shared/mocks/categories'
@@ -70,30 +70,30 @@ onMounted(fetchProjects)
     <!-- Category tabs -->
     <BaseTabs :tabs="categories" v-model="activeCategory" />
 
-    <!-- Loading -->
-    <div v-if="loading" class="flex justify-center py-16 text-gray-300">
-      <Loader :size="20" class="animate-spin" />
-    </div>
-
     <!-- Error -->
     <div
-      v-else-if="error"
+      v-if="error"
       class="flex items-center justify-center gap-2 py-10 text-sm text-red-500"
     >
       <AlertCircle :size="16" />
       Failed to load listings.
     </div>
 
-    <!-- Cards -->
+    <!-- Cards (skeleton while loading, real cards when loaded) -->
     <div
-      v-else-if="projects.length"
+      v-else-if="loading || projects.length"
       class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
     >
-      <ProjectCard
-        v-for="project in projects"
-        :key="project.id"
-        :project="project"
-      />
+      <template v-if="loading">
+        <ProjectCard v-for="n in 3" :key="n" loading />
+      </template>
+      <template v-else>
+        <ProjectCard
+          v-for="project in projects"
+          :key="project.id"
+          :project="project"
+        />
+      </template>
     </div>
 
     <!-- Empty -->

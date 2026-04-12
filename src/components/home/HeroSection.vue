@@ -9,9 +9,15 @@ const { isSignedIn } = useAuth()
 </script>
 
 <template>
-  <section
-    :style="{ backgroundImage: `url(${heroBg})`, backgroundSize: 'cover', backgroundPosition: 'center right', backgroundRepeat: 'no-repeat' }">
-    <div class="max-w-6xl mx-auto flex flex-col gap-10 py-20 overflow-hidden px-6">
+  <section class="relative">
+    <img
+      :src="heroBg"
+      alt=""
+      aria-hidden="true"
+      fetchpriority="high"
+      class="absolute inset-0 w-full h-full object-cover object-right"
+    />
+    <div class="relative max-w-6xl mx-auto flex flex-col gap-10 py-20 overflow-hidden px-6">
       <div class="flex flex-col gap-4 max-w-2xl">
         <h1 class="text-5xl font-bold tracking-tight">
           {{ heroContent.headline }}
@@ -50,3 +56,4 @@ const { isSignedIn } = useAuth()
     </div>
   </section>
 </template>
+

@@ -4,7 +4,8 @@ import { getCategoryLabel } from '@/shared/mocks/categories'
 import ProjectImage from '@/components/shared/ProjectImage.vue'
 
 defineProps<{
-  project: Project
+  project?: Project
+  loading?: boolean
 }>()
 
 function formatPrice(value: number): string {
@@ -18,7 +19,43 @@ function formatRevenue(value: number): string {
 </script>
 
 <template>
+  <!-- Skeleton state -->
+  <div
+    v-if="loading"
+    class="flex flex-col border border-gray-100 rounded-xl overflow-hidden animate-pulse"
+    aria-hidden="true"
+  >
+    <div class="aspect-video w-full bg-gray-100" />
+    <div class="flex flex-col gap-3 p-4">
+      <div class="flex flex-col gap-1.5">
+        <div class="h-3 w-16 bg-gray-100 rounded" />
+        <div class="h-4 w-3/4 bg-gray-200 rounded" />
+        <div class="h-4 w-1/2 bg-gray-100 rounded" />
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <div class="h-3 w-full bg-gray-100 rounded" />
+        <div class="h-3 w-5/6 bg-gray-100 rounded" />
+      </div>
+      <div class="flex items-center gap-4 pt-1 border-t border-gray-100">
+        <div class="flex flex-col gap-1">
+          <div class="h-2.5 w-10 bg-gray-100 rounded" />
+          <div class="h-3.5 w-14 bg-gray-200 rounded" />
+        </div>
+        <div class="flex flex-col gap-1">
+          <div class="h-2.5 w-10 bg-gray-100 rounded" />
+          <div class="h-3.5 w-14 bg-gray-200 rounded" />
+        </div>
+      </div>
+      <div class="flex items-center justify-between pt-2 border-t border-gray-100">
+        <div class="h-3 w-16 bg-gray-100 rounded" />
+        <div class="h-4 w-20 bg-gray-200 rounded" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Loaded state -->
   <RouterLink
+    v-else-if="project"
     :to="`/projects/${project.id}`"
     class="flex flex-col border border-gray-200 rounded-xl overflow-hidden hover:border-gray-400 transition-colors"
   >
