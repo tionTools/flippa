@@ -1,5 +1,24 @@
 <script setup lang="ts">
 import { Activity } from '@lucide/vue'
+// import { supabase } from '@/utils/supabase'
+// import { onMounted } from 'vue'
+
+// onMounted(async () => {
+//   const deleteResult = await supabase
+//     .from('test_items')
+//     .delete()
+//     .eq('id', 2)
+
+//   console.log('delete error:', deleteResult.error)
+
+//   const selectResult = await supabase
+//     .from('test_items')
+//     .select('*')
+//     .order('id', { ascending: true })
+
+//   console.log('all test_items after delete:', selectResult.data)
+//   console.log('select error:', selectResult.error)
+// })
 </script>
 
 <template>
@@ -12,8 +31,7 @@ import { Activity } from '@lucide/vue'
 
     <!-- Placeholder state -->
     <div
-      class="flex flex-col items-center justify-center gap-4 py-20 bg-white rounded-2xl border border-gray-100 text-center"
-    >
+      class="flex flex-col items-center justify-center gap-4 py-20 px-5 bg-white rounded-2xl border border-gray-100 text-center">
       <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-gray-100 text-gray-400">
         <Activity :size="22" />
       </span>
