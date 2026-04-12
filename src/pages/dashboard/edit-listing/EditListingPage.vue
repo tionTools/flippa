@@ -75,18 +75,11 @@ function handleCancel() {
 
     <!-- Form -->
     <template v-else-if="initialValues">
-      <div
-        v-if="saveError"
-        class="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-red-50 border border-red-100 text-sm text-red-700"
-      >
-        <AlertCircle :size="16" class="shrink-0" />
-        {{ saveError }}
-      </div>
-
       <ProjectForm
         mode="edit"
         :initial-values="initialValues"
         :loading="saving"
+        :write-error="!!saveError"
         @submit="handleSubmit"
         @cancel="handleCancel"
       />

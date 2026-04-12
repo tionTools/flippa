@@ -67,6 +67,7 @@ onMounted(fetchProjects)
       </RouterLink>
     </div>
 
+
     <!-- Category tabs -->
     <BaseTabs :tabs="categories" :model-value="categoryFilter" @update:model-value="onTabChange" />
 

@@ -6,13 +6,14 @@ import { projectSchema } from '@/schemas/project'
 import { EMPTY_FORM_VALUES } from '@/types/project'
 import type { ProjectFormData } from '@/schemas/project'
 import type { ProjectFormValues } from '@/types/project'
-import { ImageIcon, Star } from '@lucide/vue'
+import { ImageIcon, Star, Info } from '@lucide/vue'
 import ProjectImage from '@/components/shared/ProjectImage.vue'
 
 const props = defineProps<{
   mode: 'create' | 'edit'
   initialValues?: Partial<ProjectFormValues>
   loading?: boolean
+  writeError?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -412,6 +413,16 @@ function handleSubmit() {
     </section>
 
     <!-- ── Footer: actions ────────────────────────────────────────────────── -->
+    <div v-if="writeError" class="flex gap-3 px-4 py-3.5 rounded-xl bg-amber-50 border border-amber-200 text-sm text-amber-800">
+      <Info :size="16" class="shrink-0 mt-0.5" />
+      <div class="flex flex-col gap-0.5">
+        <span class="font-semibold">Write access is restricted.</span>
+        <span class="text-amber-700">
+          This project uses Supabase as its data layer. In the current access mode, write operations may be
+          unavailable due to database-level restrictions. This is not an interface error — it is a data access limitation.
+        </span>
+      </div>
+    </div>
     <div class="flex items-center justify-end gap-3 pt-1">
       <button
         type="button"
