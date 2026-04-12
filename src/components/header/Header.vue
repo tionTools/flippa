@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Show, SignInButton, SignUpButton, UserButton } from '@clerk/vue'
 import { Vue3Marquee } from 'vue3-marquee'
-import { LogIn, UserPlus } from '@lucide/vue'
+import { LogIn, UserPlus, LayoutDashboard } from '@lucide/vue'
 import SearchBar from './SearchBar.vue'
 import AppLogo from '@/components/shared/AppLogo.vue'
 
@@ -16,28 +16,35 @@ interface TickerItem {
 const tickerItems: TickerItem[] = [
   { id: '1', name: 'CloudSync AI', price: '$420,000', change: '+12.4%', trend: 'up' },
   { id: '2', name: 'StorePilot', price: '$1,200,000', change: '+8.1%', trend: 'up' },
-  { id: '3', name: 'AdFlow Pro', price: '$780,000', change: '+15.7%', trend: 'up' },
-  { id: '4', name: 'NestMetrics', price: '$340,000', change: '+6.3%', trend: 'up' },
-  { id: '5', name: 'SendLoop', price: '$2,100,000', change: '+9.2%', trend: 'up' },
+  { id: '5', name: 'AdFlow Pro', price: '$780,000', change: '+15.7%', trend: 'up' },
+  { id: '3', name: 'NestMetrics', price: '$340,000', change: '+6.3%', trend: 'up' },
+  { id: '4', name: 'SendLoop', price: '$2,100,000', change: '+9.2%', trend: 'up' },
 ]
 </script>
 
 <template>
-  <header class="fixed top-0 inset-x-0 z-10 bg-white/80 backdrop-blur-md">
-    <div class="h-8 border-b border-gray-100 flex items-center overflow-hidden text-xs text-gray-500">
-      <Vue3Marquee :duration="40" :pause-on-hover="false" :clone="true">
-        <div v-for="item in tickerItems" :key="item.id" class="flex items-center gap-1.5 px-6">
-          <span class="font-medium text-gray-700">{{ item.name }}</span>
-          <span>{{ item.price }}</span>
-          <span class="text-green-600">{{ item.change }}</span>
-          <span class="text-green-600">↑</span>
-          <span class="text-gray-300 px-2">·</span>
-        </div>
-      </Vue3Marquee>
-    </div>
+  <!-- Ticker: normal document flow, scrolls with page -->
+  <div class="h-8 bg-white border-b border-gray-100 flex items-center overflow-hidden text-xs text-gray-500">
+    <Vue3Marquee :duration="40" :pause-on-hover="true" :clone="true">
+      <RouterLink
+        v-for="item in tickerItems"
+        :key="item.id"
+        :to="`/projects/${item.id}`"
+        class="flex items-center gap-1.5 px-6 hover:text-gray-700 transition-colors"
+      >
+        <span class="font-medium text-gray-700">{{ item.name }}</span>
+        <span>{{ item.price }}</span>
+        <span class="text-green-600">{{ item.change }}</span>
+        <span class="text-green-600">↑</span>
+        <span class="text-gray-300 px-2">·</span>
+      </RouterLink>
+    </Vue3Marquee>
+  </div>
 
-    <div class="h-16 border-b border-gray-100 flex items-center px-6 gap-4 justify-between">
-      <AppLogo class="w-32" />
+  <!-- Nav: sticky, stays at top on scroll -->
+  <header class="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b border-gray-100">
+    <div class="h-16 flex items-center px-6 gap-4 justify-between">
+      <AppLogo class="shrink-0" />
 
       <nav class="flex items-center gap-1 shrink-0">
         <RouterLink to="/projects"
@@ -53,13 +60,6 @@ const tickerItems: TickerItem[] = [
           class="px-3 py-1.5 rounded-lg text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors">
           How It Works
         </a>
-        <Show when="signed-in">
-          <RouterLink to="/dashboard"
-            class="px-3 py-1.5 rounded-lg text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
-            active-class="text-gray-900 bg-gray-100 font-medium">
-            Dashboard
-          </RouterLink>
-        </Show>
       </nav>
 
       <SearchBar class="flex-1 hidden md:flex max-w-sm lg:max-w-md" />
@@ -82,6 +82,13 @@ const tickerItems: TickerItem[] = [
           </SignUpButton>
         </Show>
         <Show when="signed-in">
+          <RouterLink
+            to="/dashboard"
+            class="flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+          >
+            <LayoutDashboard :size="14" />
+            Dashboard
+          </RouterLink>
           <UserButton />
         </Show>
       </div>

@@ -1,13 +1,6 @@
 <script setup lang="ts">
 import { useUser, useClerk } from '@clerk/vue'
-import {
-  List,
-  Plus,
-  Settings,
-  UserCircle,
-  LogOut,
-  ChevronRight,
-} from '@lucide/vue'
+import { List, Plus, Settings, UserCircle, LogOut } from '@lucide/vue'
 import AppLogo from '@/components/shared/AppLogo.vue'
 
 const { user } = useUser()
@@ -41,7 +34,7 @@ function signOut() {
 </script>
 
 <template>
-  <aside class="w-60 shrink-0 flex flex-col border-r border-gray-100 bg-white min-h-screen">
+  <aside class="w-60 shrink-0 flex flex-col border-r border-gray-100 bg-white h-full">
     <!-- Logo -->
     <div class="h-16 flex items-center px-5 border-b border-gray-100">
       <AppLogo size="lg" />
