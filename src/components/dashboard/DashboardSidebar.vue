@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useUser, useClerk } from '@clerk/vue'
-import { LayoutDashboard, List, Plus, Settings, UserCircle, LogOut } from '@lucide/vue'
+import { LayoutDashboard, List, Activity, Plus, Settings, UserCircle, LogOut } from '@lucide/vue'
 import AppLogo from '@/components/shared/AppLogo.vue'
 
 const { user } = useUser()
@@ -11,6 +11,7 @@ interface NavItem {
   label: string
   icon: unknown
   exact?: boolean
+  badge?: number
 }
 
 interface PlaceholderItem {
@@ -21,6 +22,7 @@ interface PlaceholderItem {
 const navItems: NavItem[] = [
   { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard, exact: true },
   { to: '/dashboard/listings', label: 'My Listings', icon: List },
+  { to: '/dashboard/activity', label: 'Activity', icon: Activity, badge: 5 },
   { to: '/dashboard/listings/new', label: 'Create Listing', icon: Plus },
 ]
 
@@ -58,7 +60,13 @@ function signOut() {
         :exact-active-class="item.exact ? '!text-gray-900 bg-gray-100 font-medium' : undefined"
       >
         <component :is="item.icon" :size="16" class="shrink-0" />
-        {{ item.label }}
+        <span class="flex-1">{{ item.label }}</span>
+        <span
+          v-if="item.badge"
+          class="shrink-0 min-w-4 h-4 px-1 rounded text-[10px] font-bold bg-indigo-600 text-white flex items-center justify-center leading-none"
+        >
+          {{ item.badge }}
+        </span>
       </RouterLink>
 
       <!-- Divider -->

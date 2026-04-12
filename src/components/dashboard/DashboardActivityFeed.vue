@@ -19,8 +19,14 @@ const typeConfig: Record<ActivityType, { icon: Component; color: string; bg: str
 
 <template>
   <div class="flex flex-col bg-white rounded-2xl border border-gray-100 overflow-hidden h-full">
-    <div class="px-5 py-4 border-b border-gray-100">
+    <div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between gap-4">
       <p class="text-sm font-semibold text-gray-900">Recent Activity</p>
+      <RouterLink
+        to="/dashboard/activity"
+        class="text-xs font-semibold text-gray-500 hover:text-gray-900 transition-colors"
+      >
+        View all →
+      </RouterLink>
     </div>
 
     <ul class="divide-y divide-gray-50 overflow-y-auto flex-1">
