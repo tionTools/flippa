@@ -51,7 +51,7 @@ const ageInYears = props.project.founded_year
     </div>
 
     <!-- Project image -->
-    <div v-if="project.image_url" class="aspect-video w-full rounded-xl overflow-hidden">
+    <div v-if="project.image_url" class="relative w-full rounded-xl overflow-hidden aspect-video max-h-96">
       <ProjectImage :src="project.image_url" :alt="project.title" />
     </div>
 

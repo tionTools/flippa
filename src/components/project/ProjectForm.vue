@@ -385,7 +385,7 @@ function handleSubmit() {
       <!-- Preview -->
       <div class="flex flex-col gap-1.5">
         <span class="text-xs font-medium text-gray-600">Preview</span>
-        <div class="aspect-video w-full max-w-sm rounded-xl overflow-hidden border border-gray-100">
+        <div class="relative aspect-video w-full max-w-sm rounded-xl overflow-hidden border border-gray-100">
           <ProjectImage :src="form.image_url || null" alt="Image preview" />
         </div>
       </div>

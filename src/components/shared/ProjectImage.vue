@@ -8,12 +8,12 @@ defineProps<{
 </script>
 
 <template>
-  <div class="w-full h-full relative overflow-hidden bg-gray-100">
+  <div class="absolute inset-0 bg-gray-100">
     <img
       v-if="src"
       :src="src"
       :alt="alt ?? ''"
-      class="w-full h-full object-cover object-center"
+      class="w-full h-full object-cover object-center block"
     />
     <div
       v-else

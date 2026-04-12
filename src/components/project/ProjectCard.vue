@@ -23,7 +23,7 @@ function formatRevenue(value: number): string {
     class="flex flex-col border border-gray-200 rounded-xl overflow-hidden hover:border-gray-400 transition-colors"
   >
     <!-- Project image -->
-    <div class="aspect-video w-full">
+    <div class="relative aspect-video w-full overflow-hidden">
       <ProjectImage :src="(project as any).image_url" :alt="project.title" />
     </div>
 
