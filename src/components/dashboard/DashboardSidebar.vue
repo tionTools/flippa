@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useUser, useClerk } from '@clerk/vue'
-import { List, Plus, Settings, UserCircle, LogOut } from '@lucide/vue'
+import { LayoutDashboard, List, Plus, Settings, UserCircle, LogOut } from '@lucide/vue'
 import AppLogo from '@/components/shared/AppLogo.vue'
 
 const { user } = useUser()
@@ -19,7 +19,8 @@ interface PlaceholderItem {
 }
 
 const navItems: NavItem[] = [
-  { to: '/dashboard', label: 'My Listings', icon: List, exact: true },
+  { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard, exact: true },
+  { to: '/dashboard/listings', label: 'My Listings', icon: List },
   { to: '/dashboard/listings/new', label: 'Create Listing', icon: Plus },
 ]
 

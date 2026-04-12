@@ -47,6 +47,11 @@ const router = createRouter({
           component: () => import('@/pages/dashboard/DashboardPage.vue'),
         },
         {
+          path: 'listings',
+          name: 'dashboard-listings',
+          component: () => import('@/pages/dashboard/my-listings/MyListingsPage.vue'),
+        },
+        {
           path: 'listings/new',
           name: 'dashboard-listing-new',
           component: () => import('@/pages/dashboard/new-listing/NewListingPage.vue'),

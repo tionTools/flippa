@@ -1,11 +1,17 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import type { DashboardProject, ProjectStatus } from '@/shared/mocks/dashboardData'
 import { getCategoryLabel } from '@/shared/mocks/categories'
 import { ExternalLink, Pencil } from '@lucide/vue'
 
-defineProps<{
+const props = defineProps<{
   projects: DashboardProject[]
+  limit?: number
 }>()
+
+const displayed = computed(() =>
+  props.limit ? props.projects.slice(0, props.limit) : props.projects,
+)
 
 function formatPrice(value: number): string {
   if (value >= 1000000) return '$' + (value / 1000000).toFixed(2) + 'M'
@@ -32,16 +38,17 @@ const statusConfig: Record<ProjectStatus, { label: string; classes: string }> = 
     <div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between gap-4">
       <p class="text-sm font-semibold text-gray-900">My Projects</p>
       <RouterLink
-        to="/dashboard/listings/new"
-        class="text-xs font-semibold text-indigo-600 hover:text-indigo-800 transition-colors"
+        v-if="limit"
+        to="/dashboard/listings"
+        class="text-xs font-semibold text-gray-500 hover:text-gray-900 transition-colors"
       >
-        + New listing
+        View all →
       </RouterLink>
     </div>
 
     <!-- Scrollable table wrapper for mobile -->
     <div class="overflow-x-auto">
-      <table class="w-full min-w-[720px] text-sm">
+      <table class="w-full min-w-180 text-sm">
         <thead>
           <tr class="border-b border-gray-100">
             <th class="px-5 py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
@@ -72,7 +79,7 @@ const statusConfig: Record<ProjectStatus, { label: string; classes: string }> = 
         </thead>
         <tbody class="divide-y divide-gray-50">
           <tr
-            v-for="project in projects"
+            v-for="project in displayed"
             :key="project.id"
             class="hover:bg-gray-50/60 transition-colors"
           >

@@ -53,7 +53,7 @@ const greeting = (() => {
       </div>
     </div>
 
-    <!-- Projects table -->
-    <DashboardProjectsTable :projects="dashboardProjects" />
+    <!-- Projects preview -->
+    <DashboardProjectsTable :projects="dashboardProjects" :limit="3" />
   </div>
 </template>
