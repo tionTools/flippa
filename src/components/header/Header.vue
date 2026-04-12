@@ -3,6 +3,7 @@ import { Show, SignInButton, SignUpButton, UserButton } from '@clerk/vue'
 import { Vue3Marquee } from 'vue3-marquee'
 import { LogIn, UserPlus } from '@lucide/vue'
 import SearchBar from './SearchBar.vue'
+import AppLogo from '@/components/shared/AppLogo.vue'
 
 interface TickerItem {
   id: string
@@ -36,9 +37,7 @@ const tickerItems: TickerItem[] = [
     </div>
 
     <div class="h-16 border-b border-gray-100 flex items-center px-6 gap-4 justify-between">
-      <RouterLink to="/" class="text-sm font-semibold text-gray-900 shrink-0">
-        Flippa
-      </RouterLink>
+      <AppLogo class="w-32" />
 
       <nav class="flex items-center gap-1 shrink-0">
         <RouterLink to="/projects"

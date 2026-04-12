@@ -2,7 +2,9 @@
 import { watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuth } from '@clerk/vue'
-import Header from '@/components/header/Header.vue'
+import { UserButton } from '@clerk/vue'
+import DashboardSidebar from '@/components/dashboard/DashboardSidebar.vue'
+import AppLogo from '@/components/shared/AppLogo.vue'
 
 const { isSignedIn, isLoaded } = useAuth()
 const router = useRouter()
@@ -19,31 +21,22 @@ watch(
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col">
-    <Header />
+  <div class="min-h-screen bg-gray-50 flex">
+    <!-- Sidebar — desktop only -->
+    <DashboardSidebar class="hidden lg:flex lg:flex-col" />
 
-    <div class="flex flex-1 pt-24">
-      <aside class="w-56 shrink-0 border-r border-gray-100 px-3 py-6">
-        <nav class="flex flex-col gap-1">
-          <RouterLink
-            to="/dashboard"
-            class="px-3 py-2 rounded-lg text-sm text-gray-700 hover:bg-gray-100 transition-colors"
-            active-class="bg-gray-100 font-medium text-gray-900"
-            :exact="true"
-          >
-            My Listings
-          </RouterLink>
-          <RouterLink
-            to="/dashboard/listings/new"
-            class="px-3 py-2 rounded-lg text-sm text-gray-700 hover:bg-gray-100 transition-colors"
-            active-class="bg-gray-100 font-medium text-gray-900"
-          >
-            Add Project
-          </RouterLink>
-        </nav>
-      </aside>
+    <!-- Content area -->
+    <div class="flex-1 flex flex-col min-w-0">
+      <!-- Mobile top bar (hidden on lg+) -->
+      <header
+        class="lg:hidden sticky top-0 z-10 h-14 bg-white border-b border-gray-100 flex items-center justify-between px-4 shrink-0"
+      >
+        <AppLogo />
+        <UserButton />
+      </header>
 
-      <main class="flex-1 p-8">
+      <!-- Page content -->
+      <main class="flex-1 p-6 lg:p-8">
         <RouterView />
       </main>
     </div>
