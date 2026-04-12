@@ -11,6 +11,6 @@ import Header from '@/components/header/Header.vue';
       <RouterView />
     </main>
 
-    <Footer style="background-color: white;" />
+    <Footer />
   </div>
 </template>

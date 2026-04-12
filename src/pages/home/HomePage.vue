@@ -6,14 +6,14 @@ import HowItWorksSection from '@/components/home/HowItWorksSection.vue'
 </script>
 
 <template>
+  <HeroSection />
   <div class="max-w-6xl mx-auto px-6">
-    <HeroSection />
 
     <div class="py-16 border-t border-gray-100">
       <HomeProjectsSection />
     </div>
 
-    <PressSection />
     <HowItWorksSection />
+    <PressSection />
   </div>
 </template>

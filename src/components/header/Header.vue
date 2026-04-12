@@ -23,37 +23,47 @@ const tickerItems: TickerItem[] = [
 </script>
 
 <template>
-  <!-- Ticker: normal document flow, scrolls with page -->
-  <div class="h-8 bg-white border-b border-gray-100 flex items-center overflow-hidden text-xs text-gray-500">
+  <!-- Ticker: dark, normal document flow -->
+  <div class="h-8 bg-indigo-950 border-b border-indigo-900 flex items-center overflow-hidden text-xs">
     <Vue3Marquee :duration="40" :pause-on-hover="true" :clone="true">
-      <RouterLink v-for="item in tickerItems" :key="item.id" :to="`/projects/${item.id}`"
-        class="flex items-center gap-1.5 px-6 hover:text-gray-700 transition-colors">
-        <span class="font-medium text-gray-700">{{ item.name }}</span>
-        <span>{{ item.price }}</span>
-        <span class="text-green-600">{{ item.change }}</span>
-        <span class="text-green-600">↑</span>
-        <span class="text-gray-300 px-2">·</span>
+      <RouterLink
+        v-for="item in tickerItems"
+        :key="item.id"
+        :to="`/projects/${item.id}`"
+        class="flex items-center gap-1.5 px-6 text-indigo-300 hover:text-white transition-colors"
+      >
+        <span class="font-medium text-white">{{ item.name }}</span>
+        <span class="text-indigo-200">{{ item.price }}</span>
+        <span class="text-green-400">{{ item.change }}</span>
+        <span class="text-green-400">↑</span>
+        <span class="text-indigo-800 px-2">·</span>
       </RouterLink>
     </Vue3Marquee>
   </div>
 
-  <!-- Nav: sticky, stays at top on scroll -->
-  <header class="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b border-gray-100">
+  <!-- Nav: dark, sticky -->
+  <header class="sticky top-0 z-10 bg-indigo-950/90 backdrop-blur-md border-b border-indigo-900">
     <div class="h-16 flex items-center px-6 gap-4 justify-between">
-      <AppLogo class="shrink-0" />
+      <AppLogo variant="light" class="shrink-0" />
 
       <nav class="flex items-center gap-1 shrink-0">
-        <RouterLink to="/projects"
-          class="px-3 py-1.5 rounded-lg text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
-          active-class="text-gray-900 bg-gray-100 font-medium">
+        <RouterLink
+          to="/projects"
+          class="px-3 py-1.5 rounded-lg text-sm text-indigo-200 hover:text-white hover:bg-white/10 transition-colors"
+          active-class="text-white bg-white/15 font-medium"
+        >
           Projects
         </RouterLink>
-        <a href="/#press"
-          class="px-3 py-1.5 rounded-lg text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors">
+        <a
+          href="/#press"
+          class="px-3 py-1.5 rounded-lg text-sm text-indigo-200 hover:text-white hover:bg-white/10 transition-colors"
+        >
           Press
         </a>
-        <a href="/#how-it-works"
-          class="px-3 py-1.5 rounded-lg text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors">
+        <a
+          href="/#how-it-works"
+          class="px-3 py-1.5 rounded-lg text-sm text-indigo-200 hover:text-white hover:bg-white/10 transition-colors"
+        >
           How It Works
         </a>
       </nav>
@@ -63,23 +73,23 @@ const tickerItems: TickerItem[] = [
       <div class="flex items-center gap-3 shrink-0">
         <Show when="signed-out">
           <SignInButton>
-            <button
-              class="flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-sm text-gray-700 hover:bg-gray-100 transition-colors">
+            <button class="flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-sm text-indigo-100 hover:bg-white/10 hover:text-white transition-colors">
               <LogIn :size="14" />
               Sign in
             </button>
           </SignInButton>
           <SignUpButton>
-            <button
-              class="flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-sm bg-gray-900 text-white hover:bg-gray-700 transition-colors">
+            <button class="flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-sm bg-white text-indigo-950 hover:bg-indigo-50 transition-colors font-medium">
               <UserPlus :size="14" />
               Sign up
             </button>
           </SignUpButton>
         </Show>
         <Show when="signed-in">
-          <RouterLink to="/dashboard"
-            class="flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-sm text-gray-700 hover:bg-gray-100 transition-colors">
+          <RouterLink
+            to="/dashboard"
+            class="flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-sm text-indigo-100 hover:bg-white/10 hover:text-white transition-colors"
+          >
             <LayoutDashboard :size="14" />
             Dashboard
           </RouterLink>

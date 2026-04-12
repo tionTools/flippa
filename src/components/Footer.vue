@@ -100,14 +100,14 @@ const socialLinks: SocialLink[] = [
 </script>
 
 <template>
-  <footer class="border-t border-gray-200 mt-16">
+  <footer class="bg-indigo-950/90 backdrop-blur-md border-t border-indigo-900">
     <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col gap-10">
 
       <!-- Brand + social -->
-      <div class="flex flex-col gap-4">
+      <div class="bg-black/20 rounded-xl px-6 py-5 flex flex-col gap-4">
         <div class="flex flex-col gap-1">
-          <span class="text-base font-semibold text-gray-900">Flippa</span>
-          <p class="text-sm text-gray-500 max-w-sm">
+          <span class="text-base font-semibold text-white">Flippa</span>
+          <p class="text-sm text-indigo-300 max-w-sm">
             The marketplace for buying and selling premium digital businesses, SaaS products, and online assets.
           </p>
         </div>
@@ -118,7 +118,7 @@ const socialLinks: SocialLink[] = [
             :href="social.href"
             target="_blank"
             rel="noopener noreferrer"
-            class="flex items-center gap-1.5 text-xs text-gray-500 hover:text-gray-900 transition-colors"
+            class="flex items-center gap-1.5 text-xs text-indigo-300 hover:text-white transition-colors"
           >
             <component :is="social.icon" :size="13" />
             {{ social.label }}
@@ -127,9 +127,13 @@ const socialLinks: SocialLink[] = [
       </div>
 
       <!-- Link groups -->
-      <div class="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-5">
-        <div v-for="group in groups" :key="group.title" class="flex flex-col gap-3">
-          <span class="text-xs font-semibold uppercase tracking-wider text-gray-400">
+      <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        <div
+          v-for="group in groups"
+          :key="group.title"
+          class="bg-black/20 rounded-xl px-4 py-5 flex flex-col gap-3"
+        >
+          <span class="text-xs font-semibold uppercase tracking-wider text-indigo-300">
             {{ group.title }}
           </span>
           <ul class="flex flex-col gap-2">
@@ -137,13 +141,13 @@ const socialLinks: SocialLink[] = [
               <RouterLink
                 v-if="link.type === 'internal'"
                 :to="link.to"
-                class="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                class="text-sm text-indigo-200 hover:text-white transition-colors"
               >
                 {{ link.label }}
               </RouterLink>
               <span
                 v-else-if="link.type === 'placeholder'"
-                class="text-sm text-gray-400 cursor-default"
+                class="text-sm text-indigo-400/50 cursor-default"
               >
                 {{ link.label }}
               </span>
@@ -152,7 +156,7 @@ const socialLinks: SocialLink[] = [
                 :href="link.href"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                class="text-sm text-indigo-200 hover:text-white transition-colors"
               >
                 {{ link.label }}
               </a>
@@ -162,9 +166,9 @@ const socialLinks: SocialLink[] = [
       </div>
 
       <!-- Bottom bar -->
-      <div class="flex flex-col gap-1 pt-6 border-t border-gray-100">
-        <span class="text-sm text-gray-500">© 2026 Flippa. All rights reserved.</span>
-        <span class="text-xs text-gray-400">
+      <div class="flex flex-col gap-1 pt-6 border-t border-indigo-900">
+        <span class="text-sm text-indigo-300">© 2026 Flippa. All rights reserved.</span>
+        <span class="text-xs text-indigo-500">
           Marketplace for premium digital businesses and online assets. All transactions are subject to our Terms of Service.
         </span>
       </div>
