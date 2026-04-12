@@ -10,7 +10,9 @@ const searchQuery = ref('')
 <template>
   <div class="flex items-center border border-gray-200 rounded-lg overflow-hidden bg-white h-9">
     <!-- Category dropdown -->
+    <label for="search-category" class="sr-only">Filter by category</label>
     <select
+      id="search-category"
       v-model="selectedCategory"
       class="h-full pl-3 pr-2 text-xs text-gray-600 bg-transparent border-r border-gray-200 outline-none cursor-pointer shrink-0 max-w-32"
     >
@@ -34,6 +36,7 @@ const searchQuery = ref('')
     <!-- Search icon -->
     <button
       type="button"
+      aria-label="Search"
       class="h-full px-3 flex items-center text-gray-400 hover:text-gray-700 transition-colors shrink-0"
       tabindex="-1"
     >

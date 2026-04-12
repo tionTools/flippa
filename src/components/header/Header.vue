@@ -54,18 +54,18 @@ const tickerItems: TickerItem[] = [
         >
           Projects
         </RouterLink>
-        <a
-          href="/#press"
+        <RouterLink
+          to="/#press"
           class="px-3 py-1.5 rounded-lg text-sm text-indigo-200 hover:text-white hover:bg-white/10 transition-colors"
         >
           Press
-        </a>
-        <a
-          href="/#how-it-works"
+        </RouterLink>
+        <RouterLink
+          to="/#how-it-works"
           class="px-3 py-1.5 rounded-lg text-sm text-indigo-200 hover:text-white hover:bg-white/10 transition-colors"
         >
           How It Works
-        </a>
+        </RouterLink>
       </nav>
 
       <SearchBar class="flex-1 hidden md:flex max-w-sm lg:max-w-md" />
